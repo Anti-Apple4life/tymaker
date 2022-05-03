@@ -15,15 +15,15 @@ public class Program
         int attempts1 = 0;
         bool done = false;
         //Sets up restart loop
-        string reciever = "placeholder";
-        string gift = "placeholder";
-        string party = "placeholder";
-        string title = "placeholder";
-        string recognize = "placeholder";
-        string article = "placeholder";
-        string sender = "placeholder";
-        string address = "placeholder";
-        string save = "placeholder";
+        string? reciever = "placeholder";
+        string? gift = "placeholder";
+        string? party = "placeholder";
+        string? title = "placeholder";
+        string? recognize = "placeholder";
+        string? article = "placeholder";
+        string? sender = "placeholder";
+        string? address = "placeholder";
+        string? save = "placeholder";
         while (!done)
         {
             //sets up restart counter (attempts)
@@ -65,7 +65,7 @@ public class Program
             Console.Write('\n');
             //Asks the user if they like the letter so far
             Console.Write("Do you like it so far? Type in \"yes\" or \"no\". \nTyping in \"no\" will restart this part of the creation process, and typing in \"yes\" will move you on to the next part of the creation process. \n");
-            string continue1 = Console.ReadLine();
+            string? continue1 = Console.ReadLine();
             Console.Write('\n');
             //checks the user's response
             switch (continue1)
@@ -127,7 +127,7 @@ public class Program
             Console.Write('\n');
             Console.Write('\n');
             Console.Write("Do you like it so far? Type in \"yes\" or \"no\". \nTyping in \"no\" will restart this part of the creation process, and typing in \"yes\" will move you on to outputting your letter to a file. \n");
-            string continue2 = Console.ReadLine();
+            string? continue2 = Console.ReadLine();
             Console.Write('\n');
             //checks the user's response
             switch (continue2)
@@ -167,7 +167,7 @@ public class Program
                         break;
                 }
                 Console.Write("What do you want the name of the text file to be?\n");
-                string fileName = Console.ReadLine();
+                string? fileName = Console.ReadLine();
                 Console.Write('\n');
                 string[] lines = { "Dear " + reciever + ",", "", "Thank you so much for coming to my " + party + ". Thank you so much for the " + gift + ". You are " + article + " " + recognize + " " + title + ".", "", address + ", " + sender + "." };
                 string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -177,7 +177,7 @@ public class Program
                         outputFile.WriteLine(line);
                 }
                 Console.Write(fileName + ".txt is now saved in " + docPath + "\nDo you want to open it now?\n");
-                string openFile = Console.ReadLine();
+                string? openFile = Console.ReadLine();
                 switch (openFile)
                 {
                     case "yes":
