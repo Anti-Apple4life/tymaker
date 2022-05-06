@@ -1,10 +1,44 @@
 ﻿using System.Diagnostics;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Diagnostics.CodeAnalysis;
 
 public class Program
 {
+    
+        
+
     public static void Main()
     {
+        string? gift = null;
+        string? address = null;
+        string? party = null;
+        string? sender = null;
+        
+        if (File.Exists((Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "tymaker.json"))) == true)
+        {
+            string json = File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "tymaker.json"));
+            JsonNode? letterNode = JsonNode.Parse(json)!;
+            if (letterNode["gift"] != null)
+            {
+                gift = letterNode["gift"]!.ToString();
+            }
+            if (letterNode["party"] != null)
+            {
+                party = letterNode["party"]!.ToString();
+            }
+            if (letterNode["sender"] != null)
+            {
+                sender = letterNode["sender"]!.ToString();
+            }
+            if (letterNode["address"] != null)
+            {
+                address = letterNode["address"]!.ToString();
+            }
+        }
+        
+
+        
         //Prints version and title into console
         Console.Write("Thank-you note bot");
         Console.Write('\n');
@@ -16,13 +50,9 @@ public class Program
         bool done = false;
         //Sets up restart loop
         string? reciever = "placeholder";
-        string? gift = "placeholder";
-        string? party = "placeholder";
         string? title = "placeholder";
         string? recognize = "placeholder";
         string? article = "placeholder";
-        string? sender = "placeholder";
-        string? address = "placeholder";
         string? save = "placeholder";
         while (!done)
         {

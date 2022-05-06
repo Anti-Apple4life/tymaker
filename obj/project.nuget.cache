@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "L9iu5aoZ/t7/WA2dwbw4GwuPUgBREmEhMXd9RiWrzHn/W1+gRSq1bsrp0fqWN8IozICE8miMa7w+nJaawMCiHA==",
+  "dgSpecHash": "2wyLIEBNuK8EFR4DeOZ/8566b+D9bLRCK4Ny8wZvxC/vDSdzEtwbPcI21c5J08YW1rNmSI7CU6BpiOR2AkFdlQ==",
   "success": true,
   "projectFilePath": "/Users/jeverman/tymaker-group/tymaker.csproj",
-  "expectedPackageFiles": [
-    "/Users/jeverman/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
