@@ -78,15 +78,27 @@ public class Program
             //Asks what gift was recieved
             Console.Write("What gift did you get from " + reciever + "?");
             Console.Write('\n');
-            //Reads answer to varible "gift"
-            gift = Console.ReadLine();
+            if (gift != null)
+            {
+                Console.Write("Imported gift \"" + gift + "\" from tymaker-config\nSkipping\n");
+            } else
+            {
+                //Reads answer to varible "gift"
+                gift = Console.ReadLine();
+            }
             Console.Write('\n');
             //Asks what type party the person went to
             Console.Write("What party did you invite " + reciever + " to? (Just write the noun with no connectors)");
             Console.Write('\n');
-            //Reads answer to "party"
-            party = Console.ReadLine();
-            Console.Write('\n');
+            if (party != null)
+            {
+                Console.Write("Imported party \"" + party + "\" from tymaker-config\nSkipping\n");
+            } else
+            {
+                //Reads answer to "party"
+                party = Console.ReadLine();
+                Console.Write('\n');
+            }
             //Prints part 1 of the letter
             Console.Write("Here is your letter so far:");
             Console.Write('\n');
@@ -144,8 +156,14 @@ public class Program
             Console.Write('\n');
             Console.Write('\n');
             Console.Write("How would you like to address " + reciever + "? (e.g: Love, From, Regards)\n");
-            address = Console.ReadLine();
-            Console.Write('\n');
+            if (address != null)
+            {
+                Console.Write("Imported closing \"" + address + "\" from tymaker-config\nSkipping\n");
+            } else
+            {
+                address = Console.ReadLine();
+                Console.Write('\n');
+            }
             Console.Write('\n');
             Console.Write("What is your name?\n");
             sender = Console.ReadLine();
