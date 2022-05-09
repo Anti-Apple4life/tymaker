@@ -2,6 +2,7 @@
 Generates Thank-You notes from information
 This is a very basic C# program that I made in 3 hours at school. It can be used for writing thank-you notes, although it it is not finished. A stable release will be posted soon.
 # Building Instructions
+### For all of these methods, you will need the [newest stable Dotnet SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
 ## Github Actions
 The easiest way to use the program is to download the latest build from [![Tymaker Builds](https://github.com/Anti-Apple4life/tymaker-group/actions/workflows/tymaker.yml/badge.svg)](https://github.com/Anti-Apple4life/tymaker-group/actions/workflows/tymaker.yml).
 ## Using `dotnet`
