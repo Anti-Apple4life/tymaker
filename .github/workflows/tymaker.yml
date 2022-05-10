@@ -2,9 +2,9 @@ name: Tymaker Builds
 
 on:
   push:
-    branches: [ tymaker ]
+    branches: [ main ]
   pull_request:
-    branches: [ tymaker ]
+    branches: [ main ]
 
 jobs:
   build:
