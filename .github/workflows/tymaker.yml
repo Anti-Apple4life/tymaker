@@ -1,10 +1,10 @@
-name: Tymaker Builds
+name: (BETA) Tymaker GUI Builds
 
 on:
   push:
-    branches: [ main ]
+    branches: [ gui-testing ]
   pull_request:
-    branches: [ main ]
+    branches: [ gui-testing ]
 
 jobs:
   build:
