@@ -1,6 +1,5 @@
-# tymaker
-Generates Thank-You notes from information
-This is a very basic C# program that I made in 3 hours at school. It can be used for writing thank-you notes, although it it is not finished. A stable release will be posted soon.
+# tymaker GUI testing
+Generates Thank-You notes from information. This version of tymaker uses a wrapper for [Zenity](https://gitlab.gnome.org/GNOME/zenity), so that may be needed for this program to work. Windows, without proper support for Zenity, has not been tested, and you can make a pull request if you figured out how to get this to run on Windows. This GUI design is not final and will change when I learn to use Xamarin.Forms.
 # Building Instructions
 ## Github Actions
 The easiest way to use the program is to download the latest build from [![Tymaker Builds](https://github.com/Anti-Apple4life/tymaker-group/actions/workflows/tymaker.yml/badge.svg)](https://github.com/Anti-Apple4life/tymaker-group/actions/workflows/tymaker.yml).
