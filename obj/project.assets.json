@@ -1,11 +1,71 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "cgozenity-csharp/0.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/cgozenity-csharp.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/cgozenity-csharp.dll": {}
+        },
+        "contentFiles": {
+          "contentFiles/any/net5.0/cgozenity.dll": {
+            "buildAction": "None",
+            "codeLanguage": "any",
+            "copyToOutput": true,
+            "outputPath": "cgozenity.dll"
+          },
+          "contentFiles/any/net5.0/cgozenity.dylib": {
+            "buildAction": "None",
+            "codeLanguage": "any",
+            "copyToOutput": true,
+            "outputPath": "cgozenity.dylib"
+          },
+          "contentFiles/any/net5.0/cgozenity.so": {
+            "buildAction": "None",
+            "codeLanguage": "any",
+            "copyToOutput": true,
+            "outputPath": "cgozenity.so"
+          }
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "cgozenity-csharp/0.1.1": {
+      "sha512": "dYRrwYP9b6k6yfubJizwEr1a5SghuJujjpD3EpIMpYYSuk4IUx/I+4aehhVnlmAF6EBdAhNNw8ijCcAp3dPFVg==",
+      "type": "package",
+      "path": "cgozenity-csharp/0.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "cgozenity-csharp.0.1.1.nupkg.sha512",
+        "cgozenity-csharp.nuspec",
+        "content/cgozenity.dll",
+        "content/cgozenity.dylib",
+        "content/cgozenity.so",
+        "contentFiles/any/net40/cgozenity.dll",
+        "contentFiles/any/net40/cgozenity.dylib",
+        "contentFiles/any/net40/cgozenity.so",
+        "contentFiles/any/net45/cgozenity.dll",
+        "contentFiles/any/net45/cgozenity.dylib",
+        "contentFiles/any/net45/cgozenity.so",
+        "contentFiles/any/net5.0/cgozenity.dll",
+        "contentFiles/any/net5.0/cgozenity.dylib",
+        "contentFiles/any/net5.0/cgozenity.so",
+        "lib/net40/cgozenity-csharp.dll",
+        "lib/net45/cgozenity-csharp.dll",
+        "lib/net5.0/cgozenity-csharp.dll"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "cgozenity-csharp >= 0.1.1"
+    ]
   },
   "packageFolders": {
     "/Users/jeverman/.nuget/packages/": {}
@@ -13,11 +73,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jeverman/tymaker-group/tymaker.csproj",
+      "projectUniqueName": "/Users/jeverman/tymaker/tymaker.csproj",
       "projectName": "tymaker",
-      "projectPath": "/Users/jeverman/tymaker-group/tymaker.csproj",
+      "projectPath": "/Users/jeverman/tymaker/tymaker.csproj",
       "packagesPath": "/Users/jeverman/.nuget/packages/",
-      "outputPath": "/Users/jeverman/tymaker-group/obj/",
+      "outputPath": "/Users/jeverman/tymaker/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/jeverman/.nuget/NuGet/NuGet.Config"
@@ -43,6 +103,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "cgozenity-csharp": {
+            "target": "Package",
+            "version": "[0.1.1, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

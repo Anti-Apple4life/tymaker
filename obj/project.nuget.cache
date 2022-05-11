@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "2wyLIEBNuK8EFR4DeOZ/8566b+D9bLRCK4Ny8wZvxC/vDSdzEtwbPcI21c5J08YW1rNmSI7CU6BpiOR2AkFdlQ==",
+  "dgSpecHash": "vApy3rULUo18xtp6VQfjcNfJATuA5NUwfiV55lXWjpt0v5iXX81v/O251sCW4AP4KZSe/7Z4SqmG47dfdVgLLw==",
   "success": true,
-  "projectFilePath": "/Users/jeverman/tymaker-group/tymaker.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/jeverman/tymaker/tymaker.csproj",
+  "expectedPackageFiles": [
+    "/Users/jeverman/.nuget/packages/cgozenity-csharp/0.1.1/cgozenity-csharp.0.1.1.nupkg.sha512"
+  ],
   "logs": []
 }

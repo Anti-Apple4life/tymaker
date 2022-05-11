@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jeverman/tymaker-group/tymaker.csproj": {}
+    "/Users/jeverman/tymaker/tymaker.csproj": {}
   },
   "projects": {
-    "/Users/jeverman/tymaker-group/tymaker.csproj": {
+    "/Users/jeverman/tymaker/tymaker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jeverman/tymaker-group/tymaker.csproj",
+        "projectUniqueName": "/Users/jeverman/tymaker/tymaker.csproj",
         "projectName": "tymaker",
-        "projectPath": "/Users/jeverman/tymaker-group/tymaker.csproj",
+        "projectPath": "/Users/jeverman/tymaker/tymaker.csproj",
         "packagesPath": "/Users/jeverman/.nuget/packages/",
-        "outputPath": "/Users/jeverman/tymaker-group/obj/",
+        "outputPath": "/Users/jeverman/tymaker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jeverman/.nuget/NuGet/NuGet.Config"
@@ -37,6 +37,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "cgozenity-csharp": {
+              "target": "Package",
+              "version": "[0.1.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

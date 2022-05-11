@@ -12,4 +12,36 @@
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="/Users/jeverman/.nuget/packages/" />
   </ItemGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <None Include="$(NuGetPackageRoot)cgozenity-csharp/0.1.1/contentFiles/any/net5.0/cgozenity.dll" Condition="Exists('$(NuGetPackageRoot)cgozenity-csharp/0.1.1/contentFiles/any/net5.0/cgozenity.dll')">
+      <NuGetPackageId>cgozenity-csharp</NuGetPackageId>
+      <NuGetPackageVersion>0.1.1</NuGetPackageVersion>
+      <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>cgozenity.dll</TargetPath>
+      <Private>True</Private>
+      <Link>cgozenity.dll</Link>
+    </None>
+    <None Include="$(NuGetPackageRoot)cgozenity-csharp/0.1.1/contentFiles/any/net5.0/cgozenity.dylib" Condition="Exists('$(NuGetPackageRoot)cgozenity-csharp/0.1.1/contentFiles/any/net5.0/cgozenity.dylib')">
+      <NuGetPackageId>cgozenity-csharp</NuGetPackageId>
+      <NuGetPackageVersion>0.1.1</NuGetPackageVersion>
+      <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>cgozenity.dylib</TargetPath>
+      <Private>True</Private>
+      <Link>cgozenity.dylib</Link>
+    </None>
+    <None Include="$(NuGetPackageRoot)cgozenity-csharp/0.1.1/contentFiles/any/net5.0/cgozenity.so" Condition="Exists('$(NuGetPackageRoot)cgozenity-csharp/0.1.1/contentFiles/any/net5.0/cgozenity.so')">
+      <NuGetPackageId>cgozenity-csharp</NuGetPackageId>
+      <NuGetPackageVersion>0.1.1</NuGetPackageVersion>
+      <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>cgozenity.so</TargetPath>
+      <Private>True</Private>
+      <Link>cgozenity.so</Link>
+    </None>
+  </ItemGroup>
 </Project>
