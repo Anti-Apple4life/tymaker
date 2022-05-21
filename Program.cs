@@ -8,12 +8,21 @@ public class Program
 
 
 
-    public static void Main()
+    public static void Main(string[] args)
     {
         string? gift = null;
         string? address = null;
         string? party = null;
         string? sender = null;
+        if (Array.Exists(args, element => element == "-h") || Array.Exists(args, element => element == "--help"))
+        {
+        Console.Write("Thank-you note bot");
+        Console.Write('\n');
+        Console.Write("Version 1.0.0");
+        Console.Write('\n');
+        Console.Write("\n -h, --help    Displays this message");
+        Console.Write("\n -c, --custom-sentences    Adds a prompt at the end to add your own custom sentences to the letter");
+        }
 
         if (File.Exists((Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "tymaker.json"))) == true)
         {
