@@ -15,14 +15,16 @@ public class Program
         string? party = null;
         string? sender = null;
         string? extrasentences = null;
+        string? letter = null;
         if (Array.Exists(args, element => element == "-h") || Array.Exists(args, element => element == "--help"))
         {
         Console.Write("Thank-you note bot");
         Console.Write('\n');
         Console.Write("Version 1.0.0");
         Console.Write('\n');
-        Console.Write("\n -h, --help    Displays this message");
-        Console.Write("\n -c, --custom-sentences    Adds a prompt at the end to add your own custom sentences to the letter\n");
+        Console.Write("\n -h, --help                     Displays this message");
+        Console.Write("\n -c, --custom-sentences         Adds a prompt at the end to add your own custom sentences to the letter\n");
+        Console.Write("\n -r, --reciever-as-file-name    Adds a prompt at the end to add your own custom sentences to the letter\n");
         Environment.Exit(0);
         }
 
@@ -60,11 +62,11 @@ public class Program
         int attempts1 = 0;
         bool done = false;
         //Sets up restart loop
-        string? reciever = "placeholder";
-        string? title = "placeholder";
-        string? recognize = "placeholder";
-        string? article = "placeholder";
-        string? save = "placeholder";
+        string? reciever = null;
+        string? title = null;
+        string? recognize = null;
+        string? article = null;
+        string? save = null;
         while (!done)
         {
             //sets up restart counter (attempts)
@@ -211,12 +213,27 @@ public class Program
                 }
                 Console.Write('\n');
                 Console.Write("What is your name?\n");
-                sender = Console.ReadLine();
+                if (sender != null)
+                {
+                    Console.Write("Imported sender \"" + sender + "\" from tymaker-config\nSkipping\n");
+                }
+                else
+                {
+                    sender = Console.ReadLine();
+                    Console.Write('\n');
+                }
                 Console.Write('\n');
                 Console.Write('\n');
+                if (extrasentences != null)
+                {
+                    letter = ("Dear " + reciever + "," + '\n' + '\n' + "Thank you so much for coming to my " + party + ". Thank you so much for the " + gift + ". You are " + article + " " + recognize + " " + title + ". " + extrasentences + "\n\n" + address + ", " + sender + ".");
+                } else
+                {
+                    letter = ("Dear " + reciever + "," + '\n' + '\n' + "Thank you so much for coming to my " + party + ". Thank you so much for the " + gift + ". You are " + article + " " + recognize + " " + title + ".\n\n" + address + ", " + sender + ".");
+                }
                 Console.Write("Here is your letter so far:");
                 Console.Write('\n');
-                Console.Write("Dear " + reciever + "," + '\n' + '\n' + "Thank you so much for coming to my " + party + ". Thank you so much for the " + gift + ". You are " + article + " " + recognize + " " + title + ".\n\n" + address + ", " + sender + ".");
+                Console.Write(letter);
                 Console.Write('\n');
                 Console.Write('\n');
                 Console.Write("Do you like it so far? Type in \"yes\" or \"no\". \nTyping in \"no\" will restart this part of the creation process, and typing in \"yes\" will move you on to outputting your letter to a file. \n");
@@ -286,15 +303,21 @@ public class Program
                             done2 = false;
                             break;
                     }
-                    Console.Write("What do you want the name of the text file to be?\n");
-                    string? fileName = Console.ReadLine();
-                    Console.Write('\n');
-                    string[] lines = { "Dear " + reciever + ",", "", "Thank you so much for coming to my " + party + ". Thank you so much for the " + gift + ". You are " + article + " " + recognize + " " + title + ".", "", address + ", " + sender + "." };
+                    
+                    string? fileName = null;
+                    if (Array.Exists(args, element => element == "-r") || Array.Exists(args, element => element == "--reciever-as-file-name"))
+                    {
+                        fileName = reciever;
+                    } else
+                    {
+                        Console.Write("What do you want the name of the text file to be?\n");
+                        fileName = Console.ReadLine();
+                        Console.Write('\n');
+                    }
                     string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                     using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, fileName + ".txt"), false))
                     {
-                        foreach (string line in lines)
-                            outputFile.WriteLine(line);
+                            outputFile.Write(letter);
                     }
                     Console.Write(fileName + ".txt is now saved in " + docPath + "\nDo you want to open it now?\n");
                     string? openFile = Console.ReadLine();
