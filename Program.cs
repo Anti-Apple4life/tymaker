@@ -23,6 +23,7 @@ public class Program
         Console.Write('\n');
         Console.Write("\n -h, --help    Displays this message");
         Console.Write("\n -c, --custom-sentences    Adds a prompt at the end to add your own custom sentences to the letter");
+        Environment.Exit(0);
         }
 
         if (File.Exists((Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "tymaker.json"))) == true)
