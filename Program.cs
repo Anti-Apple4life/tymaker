@@ -14,6 +14,7 @@ public class Program
         string? address = null;
         string? party = null;
         string? sender = null;
+        string? extrasentences = null;
         if (Array.Exists(args, element => element == "-h") || Array.Exists(args, element => element == "--help"))
         {
         Console.Write("Thank-you note bot");
@@ -192,6 +193,11 @@ public class Program
                 article = Console.ReadLine();
                 Console.Write('\n');
                 Console.Write('\n');
+                if (Array.Exists(args, element => element == "-c") || Array.Exists(args, element => element == "--custom-sentences"))
+                {
+                    Console.Write("Are there any other sentences that you want to direct to " + reciever + "? (Comes after \"" + "You are " + article + " " + recognize + " " + title + "\")\n");
+                    extrasentences = Console.ReadLine();
+                }
                 Console.Write("How would you like to address " + reciever + "? (e.g: Love, From, Regards)\n");
                 if (address != null)
                 {
