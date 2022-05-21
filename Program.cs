@@ -22,7 +22,7 @@ public class Program
         Console.Write("Version 1.0.0");
         Console.Write('\n');
         Console.Write("\n -h, --help    Displays this message");
-        Console.Write("\n -c, --custom-sentences    Adds a prompt at the end to add your own custom sentences to the letter");
+        Console.Write("\n -c, --custom-sentences    Adds a prompt at the end to add your own custom sentences to the letter\n");
         Environment.Exit(0);
         }
 
