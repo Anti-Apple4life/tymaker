@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Text.Json.Nodes;
 using static tymaker.ReadFromJson;
 
 namespace tymaker;
@@ -185,12 +184,17 @@ public static class Program
                 Console.Write('\n');
                 string? letter = null;
                 if (letterData.ExtraSentences != null)
-                    letter = "Dear " + receiver + "," + '\n' + '\n' + "Thank you so much for coming to my " + letterData.Party +
-                             ". Thank you so much for the " + letterData.Gift + ". You are " + article + " " + recognize + " " +
-                             title + ". " + letterData.ExtraSentences + "\n\n" + letterData.Address + ", " + letterData.Sender + ".";
+                    letter = "Dear " + receiver + "," + '\n' + '\n' + "Thank you so much for coming to my " +
+                             letterData.Party +
+                             ". Thank you so much for the " + letterData.Gift + ". You are " + article + " " +
+                             recognize + " " +
+                             title + ". " + letterData.ExtraSentences + "\n\n" + letterData.Address + ", " +
+                             letterData.Sender + ".";
                 else
-                    letter = "Dear " + receiver + "," + '\n' + '\n' + "Thank you so much for coming to my " + letterData.Party +
-                             ". Thank you so much for the " + letterData.Gift + ". You are " + article + " " + recognize + " " +
+                    letter = "Dear " + receiver + "," + '\n' + '\n' + "Thank you so much for coming to my " +
+                             letterData.Party +
+                             ". Thank you so much for the " + letterData.Gift + ". You are " + article + " " +
+                             recognize + " " +
                              title + ".\n\n" + letterData.Address + ", " + letterData.Sender + ".";
                 Console.Write("Here is your letter so far:");
                 Console.Write('\n');
@@ -216,12 +220,12 @@ public static class Program
                         attempts1++;
                         Console.Write('\n');
                         Console.Write('\n');
-                ReadJson(letterData, false, true);
+                        ReadJson(letterData, false, true);
                         break;
                     //restarts the program
                 }
 
-                bool done2 = false;
+                var done2 = false;
                 while (!done2)
                 {
                     Console.Write(
