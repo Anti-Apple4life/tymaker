@@ -32,15 +32,16 @@ public static class Program
         Console.Write("Version 1.0.0");
         Console.Write('\n');
         //sets up restart counter
-        var attempts = 0;
-        var attempts1 = 0;
-        var done = false;
+        int attempts = 0;
+        int attempts1 = 0;
+        bool done = false;
         //Sets up restart loop
         string? receiver = null;
         string? title = null;
         string? recognize = null;
         string? article = null;
         string? save = null;
+        string? letter = null;
         while (!done)
         {
             //sets up restart counter (attempts)
@@ -96,7 +97,8 @@ public static class Program
             //Asks the user if they like the letter so far
             Console.Write(
                 "Do you like it so far? Type in \"yes\" or \"no\". \nTyping in \"no\" will restart this part of the creation process, and typing in \"yes\" will move you on to the next part of the creation process. \n");
-            var continue1 = Console.ReadLine();
+            // ReSharper disable once SuggestVarOrType_BuiltInTypes
+            string? continue1 = Console.ReadLine();
             Console.Write('\n');
             //checks the user's response
             switch (continue1)
@@ -117,8 +119,9 @@ public static class Program
                     break;
                 //restarts the program
             }
+        }
 
-            //Tells the user that they are in Section 2
+        //Tells the user that they are in Section 2
             Console.Write("Section 2 \n\n");
             var done1 = false;
             while (!done1)
@@ -182,7 +185,6 @@ public static class Program
 
                 Console.Write('\n');
                 Console.Write('\n');
-                string? letter = null;
                 if (letterData.ExtraSentences != null)
                     letter = "Dear " + receiver + "," + '\n' + '\n' + "Thank you so much for coming to my " +
                              letterData.Party +
@@ -203,7 +205,7 @@ public static class Program
                 Console.Write('\n');
                 Console.Write(
                     "Do you like it so far? Type in \"yes\" or \"no\". \nTyping in \"no\" will restart this part of the creation process, and typing in \"yes\" will move you on to outputting your letter to a file. \n");
-                var continue2 = Console.ReadLine();
+                string? continue2 = Console.ReadLine();
                 Console.Write('\n');
                 //checks the user's response
                 switch (continue2)
@@ -224,8 +226,9 @@ public static class Program
                         break;
                     //restarts the program
                 }
+            }
 
-                var done2 = false;
+            var done2 = false;
                 while (!done2)
                 {
                     Console.Write(
@@ -295,8 +298,8 @@ public static class Program
                             break;
                     }
                 }
-            }
-        }
+            
+        
     }
 
     public class LetterData
