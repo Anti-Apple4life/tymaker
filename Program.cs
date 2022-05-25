@@ -1,55 +1,30 @@
 ﻿using System.Diagnostics;
-using System.Text.Json;
 using System.Text.Json.Nodes;
-using System.Diagnostics.CodeAnalysis;
+using static tymaker.ReadFromJson;
 
-public class Program
+namespace tymaker;
+
+public static class Program
 {
-
-
-
     public static void Main(string[] args)
     {
-        string? gift = null;
-        string? address = null;
-        string? party = null;
-        string? sender = null;
-        string? extrasentences = null;
-        string? letter = null;
+        var letterData = new LetterData();
         if (Array.Exists(args, element => element == "-h") || Array.Exists(args, element => element == "--help"))
         {
-        Console.Write("Thank-you note bot");
-        Console.Write('\n');
-        Console.Write("Version 1.0.0");
-        Console.Write('\n');
-        Console.Write("\n -h, --help                     Displays this message");
-        Console.Write("\n -c, --custom-sentences         Adds a prompt at the end to add your own custom sentences to the letter\n");
-        Console.Write("\n -r, --reciever-as-file-name    Adds a prompt at the end to add your own custom sentences to the letter\n");
-        Environment.Exit(0);
+            Console.Write("Thank-you note bot");
+            Console.Write('\n');
+            Console.Write("Version 1.0.0");
+            Console.Write('\n');
+            Console.Write("\n -h, --help                     Displays this message");
+            Console.Write(
+                "\n -c, --custom-sentences         Adds a prompt at the end to add your own custom sentences to the letter\n");
+            Console.Write(
+                "\n -r, --receiver-as-file-name    Adds a prompt at the end to add your own custom sentences to the letter\n");
+            Environment.Exit(0);
         }
 
-        if (File.Exists((Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "tymaker.json"))) == true)
-        {
-            string json = File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "tymaker.json"));
-            JsonNode? letterNode = JsonNode.Parse(json)!;
-            if (letterNode["gift"] != null)
-            {
-                gift = letterNode["gift"]!.ToString();
-            }
-            if (letterNode["party"] != null)
-            {
-                party = letterNode["party"]!.ToString();
-            }
-            if (letterNode["sender"] != null)
-            {
-                sender = letterNode["sender"]!.ToString();
-            }
-            if (letterNode["address"] != null)
-            {
-                address = letterNode["address"]!.ToString();
-            }
-        }
 
+        ReadJson(letterData, true, false);
 
 
         //Prints version and title into console
@@ -58,11 +33,11 @@ public class Program
         Console.Write("Version 1.0.0");
         Console.Write('\n');
         //sets up restart counter
-        int attempts = 0;
-        int attempts1 = 0;
-        bool done = false;
+        var attempts = 0;
+        var attempts1 = 0;
+        var done = false;
         //Sets up restart loop
-        string? reciever = null;
+        string? receiver = null;
         string? title = null;
         string? recognize = null;
         string? article = null;
@@ -75,6 +50,7 @@ public class Program
                 Console.Write("You have redone this section " + attempts + " times.");
                 Console.Write('\n');
             }
+
             if (attempts == 1)
             {
                 Console.Write("You have redone this section " + attempts + " time.");
@@ -86,43 +62,42 @@ public class Program
             Console.Write("Who are you writing to?");
             Console.Write('\n');
             //Reads answer to varible "reciever"
-            reciever = Console.ReadLine();
+            receiver = Console.ReadLine();
             Console.Write('\n');
             //Asks what gift was recieved
-            Console.Write("What gift did you get from " + reciever + "?");
+            Console.Write("What gift did you get from " + receiver + "?");
             Console.Write('\n');
-            if (gift != null)
-            {
-                Console.Write("Imported gift \"" + gift + "\" from tymaker-config\nSkipping\n");
-            }
+            if (letterData.Gift != null)
+                Console.Write("Imported gift \"" + letterData.Gift + "\" from tymaker-config\nSkipping\n");
             else
-            {
                 //Reads answer to varible "gift"
-                gift = Console.ReadLine();
-            }
+                letterData.Gift = Console.ReadLine();
             Console.Write('\n');
             //Asks what type party the person went to
-            Console.Write("What party did you invite " + reciever + " to? (Just write the noun with no connectors)");
+            Console.Write("What party did you invite " + receiver + " to? (Just write the noun with no connectors)");
             Console.Write('\n');
-            if (party != null)
+            if (letterData.Party != null)
             {
-                Console.Write("Imported party \"" + party + "\" from tymaker-config\nSkipping\n");
+                Console.Write("Imported party \"" + letterData.Party + "\" from tymaker-config\nSkipping\n");
             }
             else
             {
                 //Reads answer to "party"
-                party = Console.ReadLine();
+                letterData.Party = Console.ReadLine();
                 Console.Write('\n');
             }
+
             //Prints part 1 of the letter
             Console.Write("Here is your letter so far:");
             Console.Write('\n');
-            Console.Write("Dear " + reciever + "," + '\n' + '\n' + "Thank you so much for coming to my " + party + ". Thank you so much for the " + gift + ".");
+            Console.Write("Dear " + receiver + "," + '\n' + '\n' + "Thank you so much for coming to my " +
+                          letterData.Party + ". Thank you so much for the " + letterData.Party + ".");
             Console.Write('\n');
             Console.Write('\n');
             //Asks the user if they like the letter so far
-            Console.Write("Do you like it so far? Type in \"yes\" or \"no\". \nTyping in \"no\" will restart this part of the creation process, and typing in \"yes\" will move you on to the next part of the creation process. \n");
-            string? continue1 = Console.ReadLine();
+            Console.Write(
+                "Do you like it so far? Type in \"yes\" or \"no\". \nTyping in \"no\" will restart this part of the creation process, and typing in \"yes\" will move you on to the next part of the creation process. \n");
+            var continue1 = Console.ReadLine();
             Console.Write('\n');
             //checks the user's response
             switch (continue1)
@@ -139,39 +114,14 @@ public class Program
                     attempts++;
                     Console.Write('\n');
                     Console.Write('\n');
-                    gift = null;
-                    address = null;
-                    party = null;
-                    sender = null;
-
-                    if (File.Exists((Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "tymaker.json"))) == true)
-                    {
-                        string json = File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "tymaker.json"));
-                        JsonNode? letterNode = JsonNode.Parse(json)!;
-                        if (letterNode["gift"] != null)
-                        {
-                            gift = letterNode["gift"]!.ToString();
-                        }
-                        if (letterNode["party"] != null)
-                        {
-                            party = letterNode["party"]!.ToString();
-                        }
-                        if (letterNode["sender"] != null)
-                        {
-                            sender = letterNode["sender"]!.ToString();
-                        }
-                        if (letterNode["address"] != null)
-                        {
-                            address = letterNode["address"]!.ToString();
-                        }
-
-                    }
+                    ReadJson(letterData, true, false);
                     break;
-                    //restarts the program
+                //restarts the program
             }
+
             //Tells the user that they are in Section 2
             Console.Write("Section 2 \n\n");
-            bool done1 = false;
+            var done1 = false;
             while (!done1)
             {
                 if (attempts1 > 1)
@@ -179,65 +129,77 @@ public class Program
                     Console.Write("You have redone this section " + attempts1 + " times.");
                     Console.Write('\n');
                 }
+
                 if (attempts1 == 1)
                 {
                     Console.Write("You have redone this section " + attempts1 + " time.");
                     Console.Write('\n');
                 }
-                Console.Write("What do you recognize " + reciever + " as? (e.g: \"aunt\", \"friend\", \"grandfather\") \n");
+
+                Console.Write("What do you recognize " + receiver +
+                              " as? (e.g: \"aunt\", \"friend\", \"grandfather\") \n");
                 title = Console.ReadLine();
                 Console.Write('\n');
                 Console.Write('\n');
-                Console.Write("How do you describe " + reciever + " as? (Context: 'answer' " + title + ")\n");
+                Console.Write("How do you describe " + receiver + " as? (Context: 'answer' " + title + ")\n");
                 recognize = Console.ReadLine();
                 Console.Write('\n');
                 Console.Write('\n');
-                Console.Write("What article do you want to use? (Context: You are 'answer' " + recognize + " " + title + ".)\n");
+                Console.Write("What article do you want to use? (Context: You are 'answer' " + recognize + " " + title +
+                              ".)\n");
                 article = Console.ReadLine();
                 Console.Write('\n');
                 Console.Write('\n');
-                if (Array.Exists(args, element => element == "-c") || Array.Exists(args, element => element == "--custom-sentences"))
+                if (Array.Exists(args, element => element == "-c") ||
+                    Array.Exists(args, element => element == "--custom-sentences"))
                 {
-                    Console.Write("Are there any other sentences that you want to direct to " + reciever + "? (Comes after \"" + "You are " + article + " " + recognize + " " + title + "\")\n");
-                    extrasentences = Console.ReadLine();
+                    Console.Write("Are there any other sentences that you want to direct to " + receiver +
+                                  "? (Comes after \"" + "You are " + article + " " + recognize + " " + title + "\")\n");
+                    letterData.ExtraSentences = Console.ReadLine();
                 }
-                Console.Write("How would you like to address " + reciever + "? (e.g: Love, From, Regards)\n");
-                if (address != null)
+
+                Console.Write("How would you like to address " + receiver + "? (e.g: Love, From, Regards)\n");
+                if (letterData.Address != null)
                 {
-                    Console.Write("Imported closing \"" + address + "\" from tymaker-config\nSkipping\n");
+                    Console.Write("Imported closing \"" + letterData.Address + "\" from tymaker-config\nSkipping\n");
                 }
                 else
                 {
-                    address = Console.ReadLine();
+                    letterData.Address = Console.ReadLine();
                     Console.Write('\n');
                 }
+
                 Console.Write('\n');
                 Console.Write("What is your name?\n");
-                if (sender != null)
+                if (letterData.Sender != null)
                 {
-                    Console.Write("Imported sender \"" + sender + "\" from tymaker-config\nSkipping\n");
+                    Console.Write("Imported sender \"" + letterData.Sender + "\" from tymaker-config\nSkipping\n");
                 }
                 else
                 {
-                    sender = Console.ReadLine();
+                    letterData.Sender = Console.ReadLine();
                     Console.Write('\n');
                 }
+
                 Console.Write('\n');
                 Console.Write('\n');
-                if (extrasentences != null)
-                {
-                    letter = ("Dear " + reciever + "," + '\n' + '\n' + "Thank you so much for coming to my " + party + ". Thank you so much for the " + gift + ". You are " + article + " " + recognize + " " + title + ". " + extrasentences + "\n\n" + address + ", " + sender + ".");
-                } else
-                {
-                    letter = ("Dear " + reciever + "," + '\n' + '\n' + "Thank you so much for coming to my " + party + ". Thank you so much for the " + gift + ". You are " + article + " " + recognize + " " + title + ".\n\n" + address + ", " + sender + ".");
-                }
+                string? letter = null;
+                if (letterData.ExtraSentences != null)
+                    letter = "Dear " + receiver + "," + '\n' + '\n' + "Thank you so much for coming to my " + letterData.Party +
+                             ". Thank you so much for the " + letterData.Gift + ". You are " + article + " " + recognize + " " +
+                             title + ". " + letterData.ExtraSentences + "\n\n" + letterData.Address + ", " + letterData.Sender + ".";
+                else
+                    letter = "Dear " + receiver + "," + '\n' + '\n' + "Thank you so much for coming to my " + letterData.Party +
+                             ". Thank you so much for the " + letterData.Gift + ". You are " + article + " " + recognize + " " +
+                             title + ".\n\n" + letterData.Address + ", " + letterData.Sender + ".";
                 Console.Write("Here is your letter so far:");
                 Console.Write('\n');
                 Console.Write(letter);
                 Console.Write('\n');
                 Console.Write('\n');
-                Console.Write("Do you like it so far? Type in \"yes\" or \"no\". \nTyping in \"no\" will restart this part of the creation process, and typing in \"yes\" will move you on to outputting your letter to a file. \n");
-                string? continue2 = Console.ReadLine();
+                Console.Write(
+                    "Do you like it so far? Type in \"yes\" or \"no\". \nTyping in \"no\" will restart this part of the creation process, and typing in \"yes\" will move you on to outputting your letter to a file. \n");
+                var continue2 = Console.ReadLine();
                 Console.Write('\n');
                 //checks the user's response
                 switch (continue2)
@@ -254,40 +216,16 @@ public class Program
                         attempts1++;
                         Console.Write('\n');
                         Console.Write('\n');
-                        gift = null;
-                        address = null;
-                        party = null;
-                        sender = null;
-
-                        if (File.Exists((Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "tymaker.json"))) == true)
-                        {
-                            string json = File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "tymaker.json"));
-                            JsonNode? letterNode = JsonNode.Parse(json)!;
-                            if (letterNode["gift"] != null)
-                            {
-                                gift = letterNode["gift"]!.ToString();
-                            }
-                            if (letterNode["party"] != null)
-                            {
-                                party = letterNode["party"]!.ToString();
-                            }
-                            if (letterNode["sender"] != null)
-                            {
-                                sender = letterNode["sender"]!.ToString();
-                            }
-                            if (letterNode["address"] != null)
-                            {
-                                address = letterNode["address"]!.ToString();
-                            }
-
-                        }
+                ReadJson(letterData, false, true);
                         break;
-                        //restarts the program
+                    //restarts the program
                 }
+
                 bool done2 = false;
                 while (!done2)
                 {
-                    Console.Write("Would you like to save your letter to a text file for later use?\nType in \"yes\" or \"no\". This will overwrite any text file with the same name.\n");
+                    Console.Write(
+                        "Would you like to save your letter to a text file for later use?\nType in \"yes\" or \"no\". This will overwrite any text file with the same name.\n");
                     save = Console.ReadLine();
                     switch (save)
                     {
@@ -303,31 +241,35 @@ public class Program
                             done2 = false;
                             break;
                     }
-                    
+
                     string? fileName = null;
-                    if (Array.Exists(args, element => element == "-r") || Array.Exists(args, element => element == "--reciever-as-file-name"))
+                    if (Array.Exists(args, element => element == "-r") ||
+                        Array.Exists(args, element => element == "--receiver-as-file-name"))
                     {
-                        fileName = reciever;
-                    } else
+                        fileName = receiver;
+                    }
+                    else
                     {
                         Console.Write("What do you want the name of the text file to be?\n");
                         fileName = Console.ReadLine();
                         Console.Write('\n');
                     }
-                    string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                    using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, fileName + ".txt"), false))
+
+                    var docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    using (var outputFile = new StreamWriter(Path.Combine(docPath, fileName + ".txt"), false))
                     {
-                            outputFile.Write(letter);
+                        outputFile.Write(letter);
                     }
+
                     Console.Write(fileName + ".txt is now saved in " + docPath + "\nDo you want to open it now?\n");
-                    string? openFile = Console.ReadLine();
+                    var openFile = Console.ReadLine();
                     switch (openFile)
                     {
                         case "yes":
-                            Process p = new Process();
-                            ProcessStartInfo pi = new ProcessStartInfo();
+                            var p = new Process();
+                            var pi = new ProcessStartInfo();
                             pi.UseShellExecute = true;
-                            pi.FileName = @Path.Combine(docPath, fileName + ".txt");
+                            pi.FileName = Path.Combine(docPath, fileName + ".txt");
                             p.StartInfo = pi;
 
                             try
@@ -336,9 +278,8 @@ public class Program
                             }
                             catch (Exception)
                             {
-
+                                // ignored
                             }
-
 
 
                             break;
@@ -348,11 +289,22 @@ public class Program
                         default:
                             Environment.Exit(0);
                             break;
-
                     }
-
                 }
             }
         }
+    }
+
+    public class LetterData
+    {
+        public string? Gift { get; set; }
+        public string? Address { get; set; }
+        public string? Party { get; set; }
+        public string? Sender { get; set; }
+        public string? ExtraSentences { get; set; }
+        public string? Receiver { get; set; }
+        public string? Title { get; set; }
+        public string? Recognize { get; set; }
+        public string? Article { get; set; }
     }
 }

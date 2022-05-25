@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZuhANi8fy3i6Aon+uxyX4z/1GEPx/1tSBN5JYdLpm+Lupco7hcXH7NvbIpH66GTIuqdRBKarHkLVkikuFT9xdQ==",
+  "dgSpecHash": "zhx7ka9fGg5xjruQ7g4cOuXKLi55C75vBmuM+ziwCWDrXZdCPaon+OmHu4CMxKzbcA4lEF0hX8z6air4/HwFMg==",
   "success": true,
-  "projectFilePath": "/home/johne/tymaker/tymaker.csproj",
+  "projectFilePath": "/home/johne/RiderProjects/tymaker/tymaker.csproj",
   "expectedPackageFiles": [
     "/home/johne/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.2/microsoft.aspnetcore.app.ref.6.0.2.nupkg.sha512"
   ],

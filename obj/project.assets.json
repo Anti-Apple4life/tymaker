@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/johne/tymaker/tymaker.csproj",
+      "projectUniqueName": "/home/johne/RiderProjects/tymaker/tymaker.csproj",
       "projectName": "tymaker",
-      "projectPath": "/home/johne/tymaker/tymaker.csproj",
+      "projectPath": "/home/johne/RiderProjects/tymaker/tymaker.csproj",
       "packagesPath": "/home/johne/.nuget/packages/",
-      "outputPath": "/home/johne/tymaker/obj/",
+      "outputPath": "/home/johne/RiderProjects/tymaker/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/johne/.nuget/NuGet/NuGet.Config"
