@@ -24,10 +24,10 @@ public static class ReadFromJson
                 letterData.Sender = null;
             }
 
-            var json =
+            string json =
                 File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                     "tymaker.json"));
-            var letterNode = JsonNode.Parse(json)!;
+            JsonNode letterNode = JsonNode.Parse(json)!;
             if (letterNode["gift"] != null) letterData.Gift = letterNode["gift"]!.ToString();
 
             if (letterNode["party"] != null) letterData.Party = letterNode["party"]!.ToString();

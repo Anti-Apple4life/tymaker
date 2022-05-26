@@ -7,7 +7,7 @@ public static class Program
 {
     public static void Main(string[] args)
     {
-        var letterData = new LetterData();
+        LetterData letterData = new LetterData();
         if (Array.Exists(args, element => element == "-h") || Array.Exists(args, element => element == "--help"))
         {
             Console.Write("Thank-you note bot");
@@ -32,9 +32,9 @@ public static class Program
         Console.Write("Version 1.0.0");
         Console.Write('\n');
         //sets up restart counter
-        var attempts = 0;
-        var attempts1 = 0;
-        var done = false;
+        int attempts = 0;
+        int attempts1 = 0;
+        bool done = false;
         //Sets up restart loop
         string? letter = null;
         while (!done)
@@ -56,16 +56,16 @@ public static class Program
             Console.Write('\n');
             Console.Write("Who are you writing to?");
             Console.Write('\n');
-            //Reads answer to varible "reciever"
+            //Reads answer to variable "receiver"
             letterData.Receiver = Console.ReadLine();
             Console.Write('\n');
-            //Asks what gift was recieved
+            //Asks what gift was received
             Console.Write("What gift did you get from " + letterData.Receiver + "?");
             Console.Write('\n');
             if (letterData.Gift != null)
                 Console.Write("Imported gift \"" + letterData.Gift + "\" from tymaker-config\nSkipping\n");
             else
-                //Reads answer to varible "gift"
+                //Reads answer to variable "gift"
                 letterData.Gift = Console.ReadLine();
             Console.Write('\n');
             //Asks what type party the person went to
@@ -106,7 +106,7 @@ public static class Program
                 case "no":
                     //leaves the restart loop on
                     done = false;
-                    //clears the console and adds 1 to the restart cunter
+                    //clears the console and adds 1 to the restart counter
                     Console.Clear();
                     attempts++;
                     Console.Write('\n');
@@ -119,7 +119,7 @@ public static class Program
 
         //Tells the user that they are in Section 2
         Console.Write("Section 2 \n\n");
-        var done1 = false;
+        bool done1 = false;
         while (!done1)
         {
             if (attempts1 > 1)
@@ -204,7 +204,7 @@ public static class Program
             Console.Write('\n');
             Console.Write(
                 "Do you like it so far? Type in \"yes\" or \"no\". \nTyping in \"no\" will restart this part of the creation process, and typing in \"yes\" will move you on to outputting your letter to a file. \n");
-            var continue2 = Console.ReadLine();
+            string? continue2 = Console.ReadLine();
             Console.Write('\n');
             //checks the user's response
             switch (continue2)
@@ -216,7 +216,7 @@ public static class Program
                 case "no":
                     //leaves the restart loop on
                     done1 = false;
-                    //clears the console and adds 1 to the restart cunter
+                    //clears the console and adds 1 to the restart counter
                     Console.Clear();
                     attempts1++;
                     Console.Write('\n');
@@ -227,12 +227,12 @@ public static class Program
             }
         }
 
-        var done2 = false;
+        bool done2 = false;
         while (!done2)
         {
             Console.Write(
                 "Would you like to save your letter to a text file for later use?\nType in \"yes\" or \"no\". This will overwrite any text file with the same name.\n");
-            var save = Console.ReadLine();
+            string? save = Console.ReadLine();
             switch (save)
             {
                 case "yes":
@@ -248,7 +248,7 @@ public static class Program
                     break;
             }
 
-            string? fileName = null;
+            string? fileName;
             if (Array.Exists(args, element => element == "-r") ||
                 Array.Exists(args, element => element == "--letterData.Receiver-as-file-name"))
             {
@@ -259,23 +259,30 @@ public static class Program
                 Console.Write("What do you want the name of the text file to be?\n");
                 fileName = Console.ReadLine();
                 Console.Write('\n');
+                if (fileName == null)
+                {
+                    Console.Write("You did not enter a file name, using receiver (" + letterData.Receiver + ")\n");
+                    fileName = letterData.Receiver;
+                }
             }
 
-            var docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            using (var outputFile = new StreamWriter(Path.Combine(docPath, fileName + ".txt"), false))
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, fileName + ".txt"), false))
             {
                 outputFile.Write(letter);
             }
 
             Console.Write(fileName + ".txt is now saved in " + docPath + "\nDo you want to open it now?\n");
-            var openFile = Console.ReadLine();
+            string? openFile = Console.ReadLine();
             switch (openFile)
             {
                 case "yes":
-                    var p = new Process();
-                    var pi = new ProcessStartInfo();
-                    pi.UseShellExecute = true;
-                    pi.FileName = Path.Combine(docPath, fileName + ".txt");
+                    Process p = new Process();
+                    ProcessStartInfo pi = new ProcessStartInfo
+                    {
+                        UseShellExecute = true,
+                        FileName = Path.Combine(docPath, fileName + ".txt")
+                    };
                     p.StartInfo = pi;
 
                     try
