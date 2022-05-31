@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using static tymaker.ReadFromJson;
+using static tymaker.MakeJson;
 
 namespace tymaker;
 
@@ -15,10 +16,15 @@ public static class Program
             Console.Write("Version 1.0.0");
             Console.Write('\n');
             Console.Write("\n -h, --help                     Displays this message");
-            Console.Write(
-                "\n -c, --custom-sentences         Adds a prompt at the end to add your own custom sentences to the letter\n");
-            Console.Write(
-                "\n -r, --letterData.Receiver-as-file-name    Adds a prompt at the end to add your own custom sentences to the letter\n");
+            Console.Write("\n -c, --custom-sentences         Adds a prompt at the end to add your own custom sentences to the letter\n");
+            Console.Write("\n -r, --receiver-as-file-name    Allows you to use your reciever as the file name, skipping a step\n");
+            Console.Write("\n -s, --setup-json               Setup JSON file for use with the program\n");
+            Environment.Exit(0);
+        }
+
+        if (Array.Exists(args, element => element == "-s") || Array.Exists(args, element => element == "--setup-json"))
+        {
+            makeJson();
             Environment.Exit(0);
         }
 
